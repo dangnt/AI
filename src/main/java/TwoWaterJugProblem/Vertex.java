@@ -10,16 +10,16 @@ import java.util.List;
 
 public class Vertex {
     private State state;
-    private Path<Vertex> path;
+    private Vertex parent;
     
     public Vertex(){
         this.state = new State();
-        this.path = new Path<>();
+        this.parent = null;
     }
     
     public Vertex(State state){
         this.state = state;        
-        this.path = new Path<>();
+        this.parent = null;
     }
     
     public static void setMaxJugsCapacity(int maxJug1, int maxJug2){
@@ -52,23 +52,33 @@ public class Vertex {
     
     public Vertex pour_jug2_jug1(){
         return new Vertex(state.pour_jug2_jug1());
-    }
-    
-    public void addToPath() {
-        this.path.addVertex(this);
-    }
-    
-    public List<Vertex> getPath(){
-        return path.getPath();
-    }
-    
-    public void setPath(List<Vertex> path){
-        this.path.setPath(path);
-    }
-
-    public void printPath(){
-        path.printPath();
     }        
+    
+    public Path tracePath(){
+        Path<Vertex> path = new Path();
+        Vertex v = new Vertex();
+        
+        v = this;
+        
+        while (v != null){
+            path.addVertex(v);
+            v = v.getParent();
+        }
+        
+        return path;
+    }
+    
+    public void setParent(Vertex vertex){
+        this.parent = vertex;
+    }    
+    
+    public Vertex getParent(){
+        return parent;
+    }
+    
+    //public void printPath(){
+    //    tracePath().printPath();
+    //}        
 
     @Override
     public boolean equals(Object obj) {
@@ -76,7 +86,8 @@ public class Vertex {
         
 	if (!(v instanceof Vertex))
             return false;	
-        return (this.getState().equals(v.getState()));
+        
+        return (this.state.equals(v.getState()));
     }        
     
     @Override
