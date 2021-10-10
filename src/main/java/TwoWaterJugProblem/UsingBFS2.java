@@ -22,7 +22,7 @@ public class UsingBFS2 {
             Vertex vertex = (Vertex) obj;
         
             for (Vertex v : this) {
-                if ((vertex.equals(v)) && (vertex.getPath().equals(v.getPath()))) {
+                if (vertex.equals(v) && (vertex.tracePath().equals(v.tracePath()))) {
                     return true;
                 }
             }
@@ -43,16 +43,10 @@ public class UsingBFS2 {
         visited.add(initialVertex);
         
 	while(!queue.isEmpty()){             
-            Vertex currentVertex = queue.poll();                                              
-            currentVertex.addToPath();
+            Vertex currentVertex = queue.poll();                                                          
             
             if(currentVertex.getState().getJug1() == GOAL || currentVertex.getState().getJug2() == GOAL){
-                currentVertex.printPath();   
-                
-                currentVertex.getPath().forEach((s) -> {                    
-                    visited.remove(s);                                                         
-                });
-                
+                currentVertex.tracePath().printPath();                                                   
                 continue;
             }            
             
@@ -66,12 +60,13 @@ public class UsingBFS2 {
             newVertices.add(currentVertex.pour_jug2_jug1());
             
             for (Vertex newVertex : newVertices){                                                                
-                if(!currentVertex.getPath().contains(newVertex)){
-                    newVertex.setPath(currentVertex.getPath());
+                if(!currentVertex.tracePath().getPath().contains(newVertex)){
+                    newVertex.setParent(currentVertex);
                     
-                    if (!visited.contains(newVertex))
+                    if (!visited.contains(newVertex)){
                         queue.add(newVertex);                   
-                    visited.add(newVertex);                                        
+                        visited.add(newVertex);       
+                    }
                 }                                             
             }                       
 	}
