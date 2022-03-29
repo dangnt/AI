@@ -1,10 +1,10 @@
-package TwoWaterJugProblem;
-
-/* 
+/*
     Nguyen Tuan Dang
     Faculty of Information Technology, Saigon University
     dangnt@sgu.edu.vn
 */
+
+package TwoWaterJugProblem;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -12,7 +12,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.ArrayList;
         
-public class UsingBFS1 {
+public class BFS2 {
     public static int MAX_JUG1, MAX_JUG2, GOAL;
     
     public static Queue<Vertex> queue = new LinkedList<>();
@@ -22,7 +22,7 @@ public class UsingBFS1 {
             Vertex vertex = (Vertex) obj;
         
             for (Vertex v : this) {
-                if ((vertex.equals(v)) && (vertex.tracePath().equals(v.tracePath()))) {
+                if (vertex.equals(v) && (vertex.tracePath().equals(v.tracePath()))) {
                     return true;
                 }
             }
@@ -35,19 +35,19 @@ public class UsingBFS1 {
         MAX_JUG1 = 3;
         MAX_JUG2 = 4;
         GOAL = 2;
-
-        Vertex.setMaxJugsCapacity(MAX_JUG1, MAX_JUG2);
         
+        Vertex.setMaxJugsCapacity(MAX_JUG1, MAX_JUG2);
+
 	Vertex initialVertex = new Vertex(new State(0,0));
         queue.add(initialVertex);      
         visited.add(initialVertex);
         
-	while(!queue.isEmpty()){             
-            Vertex currentVertex = queue.poll();                                                                                  
+	while(!queue.isEmpty()){
+            Vertex currentVertex = queue.poll();                                                          
             
             if(currentVertex.getState().getJug1() == GOAL || currentVertex.getState().getJug2() == GOAL){
                 currentVertex.tracePath().printPath();                                                   
-                break;
+                continue;
             }            
             
             ArrayList<Vertex> newVertices = new ArrayList<>();
@@ -59,15 +59,15 @@ public class UsingBFS1 {
             newVertices.add(currentVertex.pour_jug1_jug2());
             newVertices.add(currentVertex.pour_jug2_jug1());
             
-            for (Vertex newVertex : newVertices){   
-                if(!currentVertex.tracePath().getPath().contains(newVertex)){                    
+            for (Vertex newVertex : newVertices){                                                                
+                if(!currentVertex.tracePath().getPath().contains(newVertex)){
                     newVertex.setParent(currentVertex);
                     
                     if (!visited.contains(newVertex)){
                         queue.add(newVertex);                   
                         visited.add(newVertex);       
                     }
-                }                
+                }                                             
             }                       
 	}
     }        

@@ -1,12 +1,12 @@
-package TwoWaterJugProblem;
-
-import java.util.List;
-
-/* 
+/*
     Nguyen Tuan Dang
     Faculty of Information Technology, Saigon University
     dangnt@sgu.edu.vn
 */
+
+package TwoWaterJugProblem;
+
+import java.util.List;
 
 public class Vertex {
     private State state;
@@ -75,10 +75,6 @@ public class Vertex {
     public Vertex getParent(){
         return parent;
     }
-    
-    //public void printPath(){
-    //    tracePath().printPath();
-    //}        
 
     @Override
     public boolean equals(Object obj) {

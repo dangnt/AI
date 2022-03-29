@@ -1,6 +1,5 @@
 package BFS;
 
-import static TwoWaterJugProblem.UsingBFS1.GOAL;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Queue;
@@ -25,19 +24,19 @@ public class BreadthFirstSearch {
     
     public void bfs(Vertex initialVertex){
 		
-	Queue<Vertex> queue = new LinkedList<>();        
+	    Queue<Vertex> queue = new LinkedList<>();
         
-	visited.add(initialVertex);
-	queue.add(initialVertex);
+	    visited.add(initialVertex);
+	    queue.add(initialVertex);
 		               
-	while(!queue.isEmpty()){
-			
+	    while(!queue.isEmpty()){
+
             Vertex actualVertex = queue.remove();
-            System.out.print(actualVertex + " ");              
+            System.out.print(actualVertex + " ");
 
             ArrayList<Vertex> adjacentVertices = actualVertex.getAdjacentVertices();
                         
-            for (int i = 0; i < adjacentVertices.size(); i++){ 		      
+            for (int i = 0; i < adjacentVertices.size(); i++){
                 Vertex v = adjacentVertices.get(i);
                             
                 if(!visited.contains(v)){
@@ -45,6 +44,6 @@ public class BreadthFirstSearch {
                     queue.add(v);
                 }
             }
-	}
+	    }
     }
 }

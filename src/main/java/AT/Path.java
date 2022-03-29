@@ -4,10 +4,10 @@
     dangnt@sgu.edu.vn
 */
 
-package TwoWaterJugProblem;
+package AT;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Path<T> {
     private List<T> path;

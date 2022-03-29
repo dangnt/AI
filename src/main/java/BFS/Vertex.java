@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Vertex<T> {
 
-    public  T state;
+    private   T state;
     private ArrayList<Vertex> adjacentVertices;
 	
     public Vertex(T state){

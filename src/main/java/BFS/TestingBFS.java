@@ -11,7 +11,7 @@ public class TestingBFS {
 		Vertex vertex3 = new Vertex("My-Tho");
 		Vertex vertex4 = new Vertex("Tay-Ninh");
 		Vertex vertex5 = new Vertex("Cao-Lanh");
-                Vertex vertex6 = new Vertex("Sa-Dec");
+		Vertex vertex6 = new Vertex("Sa-Dec");
 		
 		vertex1.addAdjacentVertex(vertex2);
 		vertex1.addAdjacentVertex(vertex3);
